@@ -46,9 +46,16 @@ let countGenre = books.filter((booksElement) => { /* loop over each object of bo
     outputArray.push(newOutput); /* add objects in new array*/
   })
   
-  outputArray.sort((outputArrayA, outputArrayB) => outputArrayA.count <= outputArrayB.count ? 0 : -1) /* sort over count*/
-  outputArray.length = 5;
+outputArray.length = 5;
+sortedArray(outputArray);
 return outputArray;
+}
+
+/*helper function*/ 
+
+function sortedArray(array) { 
+  array.sort((arrayA, arrayB) => arrayA.count <= arrayB.count ? 0 : -1) /* sort over count*/
+  
 }
 
 function getMostPopularBooks(books) {
@@ -61,7 +68,9 @@ function getMostPopularBooks(books) {
             count: borrowCount
         })
     }
-    return mostPopular.sort((a, b) => b.count - a.count).slice(0, 5)} /* sort and slice to top 5*/
+    return topFiveSorted(mostPopular);
+} 
+
 
 
 function getMostPopularAuthors(books, authors) {
@@ -85,12 +94,15 @@ function getMostPopularAuthors(books, authors) {
                     count: book.borrows.length
                 });
             }
-            console.log(blankArray)
+            return blankArray;
         })
     })
   return topFiveSorted(blankArray)
   } 
-  function topFiveSorted(array) {
+
+ /*helper function*/  
+
+function topFiveSorted(array) {
   return array.sort((a, b) => b.count - a.count).slice(0, 5);
   }
 
